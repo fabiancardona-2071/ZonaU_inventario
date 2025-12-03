@@ -61,17 +61,15 @@ def menu_admin(admin_logeado):
     while True:
         print("""
 ========== MENÚ ADMINISTRADOR ==========
-1. Crear usuario
-2. Eliminar usuario
-3. Reporte completo de usuarios
-4. Agregar producto
-5. Eliminar producto
-6. Registrar movimiento
-7. Reporte de movimientos
-8. Mostrar alertas de stock mínimo
-9. Mostrar productos
-10. Cerrar sesión
-11. salir del programa
+1. Reporte completo de usuarios
+2. Agregar producto
+3. Eliminar producto
+4. Registrar movimiento
+5. Reporte de movimientos
+6. Mostrar alertas de stock mínimo
+7. Mostrar productos
+8. Cerrar sesión
+9. salir del programa
 """)
 
         op = input("Seleccione una opción: ")
@@ -79,29 +77,15 @@ def menu_admin(admin_logeado):
         # ===================================
         # USUARIOS
         # ===================================
+        
+
         if op == "1":
-            print("\n--- Crear Usuario ---")
-            id_u = input("ID Usuario: ")
-            nombre = input("Nombre: ")
-            apellido = input("Apellido: ")
-            user = input("Usuario: ")
-            password = input("Contraseña: ")
-            rol=input("rol: empleado/admin")
-            nuevo = Usuario(id_u, nombre, apellido, user, password,rol)
-            admin_logeado.crear_usuario(nuevo)
-
-        elif op == "2":
-            print("\n--- Eliminar Usuario ---")
-            id_u = input("ID usuario a eliminar: ")
-            admin_logeado.eliminar_usuario(id_u)
-
-        elif op == "3":
             admin_logeado.generar_reporte_completo()
 
         # ===================================
         # PRODUCTOS
         # ===================================
-        elif op == "4":
+        elif op == "2":
             print("\n--- Agregar Producto ---")
             id_p = input("ID: ")
             nombre = input("Nombre: ")
@@ -115,21 +99,21 @@ def menu_admin(admin_logeado):
             prod = Producto(id_p, nombre, desc, prov, pcosto, pventa, stock, fecha)
             gestor.agregar_producto(prod)
 
-        elif op == "5":
+        elif op == "3":
             id_p = input("ID del producto a eliminar: ")
             gestor.eliminar_producto(id_p)
 
         # ===================================
         # MOVIMIENTOS
         # ===================================
-        elif op == "6":
+        elif op == "4":
             print("\n--- Registrar Movimiento ---")
             id_p = input("ID Producto: ")
             tipo = input("Tipo (ENTRADA/SALIDA): ").upper()
             cantidad = int(input("Cantidad: "))
             gestor.registrar_movimiento(id_p, tipo, cantidad, admin_logeado.id_usuario)
 
-        elif op == "7":
+        elif op == "5":
             print("\n--- Reporte Movimientos ---")
             f1 = input("Fecha inicio YYYY-MM-DD: ")
             f2 = input("Fecha fin YYYY-MM-DD: ")
@@ -141,11 +125,11 @@ def menu_admin(admin_logeado):
         # ===================================
         # ALERTAS & MOSTRAR PRODUCTOS
         # ===================================
-        elif op == "8":
+        elif op == "6":
             limite = int(input("Límite de stock: "))
             gestor.alertas_stock_minimo(limite)
 
-        elif op == "9":
+        elif op == "7":
             print("\n--- LISTA DE PRODUCTOS ---")
             for p in gestor.lista_productos.values():
                 p.mostrar_info_producto()
@@ -153,10 +137,10 @@ def menu_admin(admin_logeado):
         # ===================================
         # CERRAR SESIÓN
         # ===================================
-        elif op == "10":
+        elif op == "8":
             admin_logeado.cerrar_sesion()
             break
-        elif op=="11":
+        elif op=="9":
             print(" Cerrando programa...")
             exit() 
 

@@ -20,15 +20,7 @@ class administrador(Usuario):
         super().__init__(id_usuario, nombre, apellido, N_usuario, contrasena,rol)
         self.codigojefe=codigo_jefe
         self.usuarios={}
-    def crear_usuario(self,user):
-        self.usuarios[user.id_usuario]=user
-        print("Usuario creado con exito")
-    def eliminar_usuario(self,id_usuario):
-        if id_usuario in self.usuarios:
-            eliminado=self.usuarios.pop(id_usuario)
-            print(f"Usuario {eliminado.nombre} fue eliminado")
-        else: 
-            print("El usuario no existe")
+
     def generar_reporte_completo(self):
         print("===== REPORTE COMPLETO DE USUARIOS =====")
         for u in self.usuarios.values():
