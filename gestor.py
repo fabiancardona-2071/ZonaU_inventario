@@ -18,6 +18,14 @@ class GestorStock:
         else:
             self.lista_productos[producto.id_producto] = producto
             print("✔ Producto agregado correctamente")
+    
+    #BUSCAR PRODUCTO
+    
+    def buscar_producto(self, nombre_producto):
+        for producto in self.lista_productos.values():
+            if producto.nombre_p.lower() == nombre_producto.lower():
+                return producto
+        return None
 
 
     # ELIMINAR PRODUCTO POR ID

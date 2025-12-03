@@ -1,29 +1,23 @@
 from producto import *
 class Usuario:
-    def __init__(self,id_usuario,nombre,apellido,N_usuario,contraseña):
+    def __init__(self,id_usuario,nombre,apellido,N_usuario,contrasena,rol):
         self.id_usuario=id_usuario
         self.nombre=nombre
         self.apellido=apellido
         self.N_usuario=N_usuario
-        self.contraseña=contraseña
+        self.contrasena=contrasena
         self.sesion_activa=False
-    
-    def iniciar_sesion(self,password):
-        if self.N_usuario and self.contraseña==password:
-            self.sesion_activa=True
-            print("la sesion se ha iniciado correctamente")
-        else:
-            print("¡ERROR!: Usuario o contraseña incorrectos")
+        self.rol=rol
     def cerrar_sesion(self):
-        if self.sesion_activa ==True:
-            self.sesion_activa=False
-            print("La sesion se ha cerrado con exito")
-        else: 
-            print("la sesion ya se encuentra cerrada")
+        if self.sesion_activa:
+            self.sesion_activa = False
+            print("La sesión se ha cerrado con éxito")
+        else:
+            print("La sesión ya se encuentra cerrada")
     
 class administrador(Usuario):
-    def __init__(self, id_usuario, nombre, apellido, N_usuario, contraseña, codigo_jefe):
-        super().__init__(id_usuario, nombre, apellido, N_usuario, contraseña)
+    def __init__(self, id_usuario, nombre, apellido, N_usuario, contrasena,rol, codigo_jefe):
+        super().__init__(id_usuario, nombre, apellido, N_usuario, contrasena,rol)
         self.codigojefe=codigo_jefe
         self.usuarios={}
     def crear_usuario(self,user):
@@ -41,8 +35,8 @@ class administrador(Usuario):
             print(f"- {u.id_usuario} | {u.nombre} {u.apellido}")
         print("========================================")
 class empleado(Usuario):
-    def __init__(self, id_usuario, nombre, apellido, N_usuario, contraseña,area,inventario):
-        super().__init__(id_usuario, nombre, apellido, N_usuario, contraseña)
+    def __init__(self, id_usuario, nombre, apellido, N_usuario, contrasena,rol,area,inventario):
+        super().__init__(id_usuario, nombre, apellido, N_usuario, contrasena,rol)
         self.area=area
         self.inventario=inventario
     def buscar_producto(self,nombre_p):
